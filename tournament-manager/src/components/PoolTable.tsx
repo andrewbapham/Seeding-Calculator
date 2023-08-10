@@ -28,6 +28,7 @@ const PoolTable = (props: PoolTableProps) => {
     return <th>{team.name}</th>;
   });
 
+  //onMount, set the diagonal of the table to Xs
   useEffect(() => {
     Array.from(document.getElementsByTagName("td")).forEach((element) => {
       if (
@@ -53,11 +54,22 @@ const PoolTable = (props: PoolTableProps) => {
 
     newScores[rowIndex][colIndex] = event.target.value;
 
-    const re = /\d{1,2}-\d{1,2}/;
-    if (re.test(event.target.value)) {
+    const singleScoreRe = /^\d{1,2}-\d{1,2}$/;
+    if (singleScoreRe.test(event.target.value)) {
       const split = event.target.value.split("-");
+      console.log(split);
       newScores[colIndex][rowIndex] = split[1] + "-" + split[0];
     }
+
+    const twoScoreRe = /^\d{1,2}-\d{1,2}, \d{1,2}-\d{1,2}$/;
+    if (twoScoreRe.test(event.target.value)) {
+      const split = event.target.value.split(", ");
+      const game1 = split[0].split("-");
+      const game2 = split[1].split("-");
+      newScores[colIndex][rowIndex] =
+        game1[1] + "-" + game1[0] + ", " + game2[1] + "-" + game2[0];
+    }
+
     //newScores[colIndex][rowIndex] = event.target.value;
     setScores(newScores);
   };
