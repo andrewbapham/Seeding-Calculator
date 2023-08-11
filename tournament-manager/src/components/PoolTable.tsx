@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 interface PoolTableProps {
-  poolNumber: number;
+  poolNumber: string;
   pool: Team[];
 }
 

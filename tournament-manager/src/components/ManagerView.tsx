@@ -1,6 +1,56 @@
 import { useEffect, useState } from "react";
 import PoolTable from "./PoolTable";
 
+const hardCodedPools = [
+  {
+    poolNumber: "1A",
+    pool: [
+      { name: "Sameer & Friends" },
+      { name: "Rush Hour" },
+      { name: "Set on my face" },
+      { name: "Fluffy and the Freds" },
+    ],
+  },
+  {
+    poolNumber: "1B",
+    pool: [
+      { name: "Sled Riders" },
+      { name: "Sniper Team Dango" },
+      { name: "Kamehameha" },
+      { name: "They never believed in us!" },
+    ],
+  },
+  {
+    poolNumber: "3A",
+    pool: [
+      { name: "Jimmy's hoes" },
+      { name: "Sally & Friends" },
+      { name: "Kung Pow" },
+      { name: "21 Bump Street" },
+    ],
+  },
+  {
+    poolNumber: "3B",
+    pool: [
+      { name: "Fly High" },
+      { name: "Throwers" },
+      { name: "Merlaw & Minions" },
+      { name: "Donnie" },
+    ],
+  },
+];
+
+const hardCodedPoolElements: JSX.Element[] = [];
+for (let i = 0; i < hardCodedPools.length; i++) {
+  hardCodedPoolElements.push(
+    <PoolTable
+      poolNumber={hardCodedPools[i].poolNumber}
+      pool={hardCodedPools[i].pool}
+      key={hardCodedPools[i].poolNumber}
+    />
+  );
+}
+
 const ManagerView = () => {
   const [poolCount, setPoolCount] = useState(1);
   const [teamCount, setTeamCount] = useState(0);
@@ -29,7 +79,11 @@ const ManagerView = () => {
     console.log(pool);
 
     poolTables.push(
-      <PoolTable poolNumber={poolCount} pool={pool} key={poolCount} />
+      <PoolTable
+        poolNumber={poolCount.toString()}
+        pool={pool}
+        key={poolCount}
+      />
     );
     setPoolCount(poolCount + 1);
 
@@ -67,7 +121,10 @@ const ManagerView = () => {
         <button onClick={handleAddPool}>Add Pool</button>
       </details>
 
-      <div id="poolTableContainer">{poolTables}</div>
+      <div id="poolTableContainer">
+        {hardCodedPoolElements}
+        {poolTables}
+      </div>
     </>
   );
 };
