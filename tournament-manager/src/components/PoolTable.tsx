@@ -7,7 +7,7 @@ interface PoolTableProps {
 
 interface Team {
   name: string;
-  teamNumber: number;
+  //teamNumber: number;
 }
 
 const singleScoreRe = /^\d{1,2}-\d{1,2}$/;
@@ -70,7 +70,13 @@ const PoolTable = (props: PoolTableProps) => {
       const game1 = split[0].split("-");
       const game2 = split[1].split("-");
       newScores[colIndex][rowIndex] =
-        game1[1] + "-" + game1[0] + ", " + game2[1] + "-" + game2[0];
+        game1[1].trim() +
+        "-" +
+        game1[0].trim() +
+        ", " +
+        game2[1].trim() +
+        "-" +
+        game2[0].trim();
     }
 
     //newScores[colIndex][rowIndex] = event.target.value;
