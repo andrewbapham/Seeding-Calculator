@@ -1,19 +1,12 @@
 import { useEffect, useState } from "react";
 import PoolTable from "./PoolTable";
 
-const pool = [
-  { name: "Team 1" },
-  { name: "Team 2" },
-  { name: "Team 3" },
-  { name: "Team 4" },
-];
-
 const ManagerView = () => {
   const [poolCount, setPoolCount] = useState(1);
   const [teamCount, setTeamCount] = useState(0);
   const [poolFormData, setPoolFormData] = useState<string[]>([]);
   //Placeholder for getting/setting localStorage data
-  const [poolData, setPoolData] = useState([pool]);
+  //const [poolData, setPoolData] = useState([pool]);
   const [poolTables, setPoolTables] = useState<JSX.Element[]>([]);
 
   //placeholder for getting/setting localStorage data
